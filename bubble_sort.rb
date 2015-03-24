@@ -1,3 +1,11 @@
+# The Odin Project
+# Projects: Advanced Building Blocks
+# Project 1: Bubble Sort
+#
+# Tasks: 1. Use the bubble sort method to sort an array.
+#        2. Create a bubble sort methos that uses a block.
+# Full details at: http://www.theodinproject.com/ruby-programming/advanced-building-blocks?ref=lnav
+
 def bubble_sort(bubbles)
   n = bubbles.size - 2
   keep_bubbling = true

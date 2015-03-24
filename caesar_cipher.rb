@@ -1,14 +1,14 @@
-# Caesar Cipher Task - The Odin Project
-
-=begin
-Task: take a string, return a cipher.
-
-Method: Cycles through input text with #each_char.
-        Uses #ord to convert to ASCII decimal.
-        Checks against ASCII A..Z and a..z ranges.
-        Wraps back to A or a if goes past Z or z.
-        Uses #chr to convert to letter.
-=end
+# The Odin Project.
+# Projects: Building Blocks.
+# Project 1: Caesar Cipher.
+#
+# Task: take a string, return a cipher.
+#
+# Method: Cycles through input text with #each_char.
+#        Uses #ord to convert to ASCII decimal.
+#        Checks against ASCII A..Z and a..z ranges.
+#        Wraps back to A or a if goes past Z or z.
+#        Uses #chr to convert to letter.
 
 def caesar_cipher(text, shift_factor)
   cipher = ""
