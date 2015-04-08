@@ -1,12 +1,15 @@
 class Game
+
   def initialize
     @player = Player.new
     start_game
   end
 
+  private
+
   def start_game
     take_turn until @player.game_over
-  end @board.show_board
+  end
 
   def take_turn
     @player.turn
@@ -15,7 +18,7 @@ class Game
 end
 
 class Player
-  attr_accessor :game_over
+  attr_reader :game_over
 
   def initialize
     @board = Board.new
@@ -30,6 +33,8 @@ class Player
     player_won
     board_full
   end
+
+  private
 
   def player_move
     print "#{@player}(#{@board.symbol}), make your move: "
@@ -75,6 +80,8 @@ class Board
     (0..6).step(3) { |i| make_board(i) }
   end
 
+  private
+
   def make_board(i)
     print row(i).join(" | "), row_divider(i)
   end
@@ -86,6 +93,8 @@ class Board
   def row_divider(i)
     i == 6 ? "\n\n" : "\n--+---+--\n"
   end
+
+  public
 
   def check_move?(move)
     @board.include?(move)

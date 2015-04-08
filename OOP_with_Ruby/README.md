@@ -1,7 +1,5 @@
 # Project: OOP with Ruby
 
-___
-
 ## Project 1: Tic Tac Toe
 **Task Summary:** Build a Tic Tac Toe game that runs from the command line. [Full details here.](http://www.theodinproject.com/ruby-programming/oop?ref=lc-pb)
 ___
