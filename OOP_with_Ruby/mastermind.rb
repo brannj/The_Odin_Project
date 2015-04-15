@@ -2,13 +2,13 @@ class Game
   def initialize
     @game_choice
     choice
-    start_game
   end
 
   def choice
     puts "Would you like to make or break the code?"
     puts "Enter m for (m)ake, b for (b)reak or q to (q)uit: "
     @choice = gets.chomp.downcase
+    start_game
   end
 
   def start_game
@@ -33,6 +33,7 @@ class CodeMaker
     @code = []
     @possible_solutions = @code_colors.repeated_permutation(4).to_a
     @feedback = []
+    @round = 0
     make_code
     start
   end
@@ -44,16 +45,20 @@ class CodeMaker
   end
 
   def start
-    12.times do
+    until @round > 12
       p @possible_solutions.size
       make_guess
       check_guess
+      guess_logic
+      p @possible_solutions.include?(@code)
       break if @feedback.count("b") == 4
+      @round += 1
     end
+    p @possible_solutions.join
   end
 
   def make_guess
-    if @feedback.empty?
+    if @round == 0
       @guess = %w[r r g g]
     else
       @guess = @possible_solutions.sample
@@ -67,6 +72,46 @@ class CodeMaker
     puts "   Guess: #{@guess.join(" ")}"
     print "Feedback: "
     @feedback = gets.chomp.downcase.split("")
+  end
+
+  def guess_logic
+    match_position if @feedback.include?("b")
+    no_match if @feedback.empty?
+    match_color if @feedback.include?("w")
+  end
+
+  def match_color
+    if @feedback.count("w") == 3
+      @guess << "."
+      matches = @guess.repeated_permutation(@feedback.count("w") + 1).to_a
+    else
+      matches = @guess.repeated_permutation(@feedback.count("w")).to_a
+    end
+    @possible_solutions = @possible_solutions.keep_if do |solution|
+      matches.any? do |match|
+        next if match.count(".") > 1
+        solution.join.match(/#{match.join}/)
+      end
+    end
+  end
+
+  def no_match
+    no_matches = @guess.uniq.each_slice(1).to_a
+    @possible_solutions.reject! do |solution|
+      no_matches.any? do |no_match|
+        solution.join.include?(no_match.join)
+      end
+    end
+  end
+
+  def match_position
+    @possible_solutions.reject! do |solution|
+      count = 0
+      @guess.each_with_index do |color, position|
+        count += 1 if color == solution[position]
+      end
+      count != @feedback.count("b")
+    end
   end
 end
 
@@ -99,7 +144,7 @@ class CodeBreaker
     @check_code = @code.clone
     check_exact
     check_near
-    puts @feedback.join(" ")
+    puts "       Feedback: #{@feedback.join}"
   end
 
   def check_exact
