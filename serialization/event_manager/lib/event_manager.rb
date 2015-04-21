@@ -23,16 +23,14 @@ def save_thank_you_letters(id, form_letter)
 end
 
 def clean_phone_number(home_phone)
-  home_phone.gsub!(/[^0-9]/, "").join
-#  if home_phone.length < 10 || home_phone.length > 11
-#    "Invalid number."
-#  elsif home_phone[0] != 1 && home_phone.length == 11
-#    "Invalid number."
-#  elsif home_phone.length == 11
-#    home_phone[1..10]
-#  else
-#    "Invalid number."
-#  end
+  home_phone = home_phone.to_s.gsub(/[^\d]/, "")
+  if home_phone.length == 11 && home_phone[0] != 1
+    home_phone[1..10]
+  elsif home_phone.length == 10
+    home_phone
+  else
+    "Invalid number."
+  end
 end
 
 puts "Event Manager Initialized!"
@@ -51,11 +49,9 @@ contents.each do |row|
 
   home_phone = clean_phone_number(row[:homephone])
 
-#  legislators = legislators_by_zipcode(zipcode)
+  legislators = legislators_by_zipcode(zipcode)
 
-#  form_letter = erb_template.result(binding)
+  form_letter = erb_template.result(binding)
 
-#  save_thank_you_letters(id, form_letter)
-
-  puts "#{name.capitalize} #{home_phone}"
+  save_thank_you_letters(id, form_letter)
 end
