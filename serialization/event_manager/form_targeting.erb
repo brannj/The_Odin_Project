@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <title>Registration Report</title>
+  </head>
+  <body>
+    <h1>Report: Registration Times and Days</h1>
+    <h2>Registration Times</h2>
+    <table>
+      <tr><th>Time</th><th>Registrations</th></tr>
+      <% reg_times.sort_by { |time, total| total }.reverse.each do |time, total| %>
+        <tr>
+          <td><%= time %></td><td><%= total %></td>
+        </tr>
+      <% end %>
+    </table>
+    <h2>Registration Days</h2>
+    <table>
+      <tr><th>Day</th><th>Registrations</th></tr>
+      <% reg_days.sort_by { |day, total| total }.reverse.each do |day, total| %>
+        <tr>
+          <td><%= day %></td><td><%= total %></td>
+        </tr>
+      <% end %>
+    </table>
+  </body>
+</html>
