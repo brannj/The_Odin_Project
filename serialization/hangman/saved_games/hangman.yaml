@@ -1,23 +1,27 @@
 --- !ruby/object:Hangman
 word:
-- h
-- e
-- l
-- p
-- l
-- i
 - n
 - e
+- w
+- s
+- l
+- e
+- t
+- t
+- e
+- r
 guesses:
+- q
 - a
-- o
 progress:
 - " _"
-- " e"
 - " _"
 - " _"
 - " _"
-- " i"
 - " _"
-- " e"
-guess: o
+- " _"
+- " _"
+- " _"
+- " _"
+- " _"
+guess: a

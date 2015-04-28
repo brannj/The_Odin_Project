@@ -10,19 +10,6 @@ class Hangman
     welcome
   end
 
-  def select_word
-    dictionary = File.readlines("dictionary.txt").reject do |word|
-      word.strip.length < 5 or word.strip.length > 12
-    end
-    dictionary.sample.downcase.strip.split("")
-  end
-
-  def welcome
-    puts "\nWould you like to load an existing game or start a new game?"
-    print "Type load or new: "
-    game_options(gets.chomp.downcase)
-  end
-
   def start
     puts "\nTry to guess the word by guessing letters."
     puts "If you make six incorrect guesses you lose."
@@ -31,6 +18,21 @@ class Hangman
       play
     end
     solution
+  end
+
+  private
+
+  def welcome
+    puts "\nWould you like to load an existing game or start a new game?"
+    print "Type load or new: "
+    game_options(gets.chomp.downcase)
+  end
+
+  def select_word
+    dictionary = File.readlines("dictionary.txt").reject do |word|
+      word.strip.length < 5 or word.strip.length > 12
+    end
+    dictionary.sample.downcase.strip.split("")
   end
 
   def play
