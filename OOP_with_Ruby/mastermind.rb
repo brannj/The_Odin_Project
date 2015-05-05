@@ -33,7 +33,7 @@ class CodeMaker
     @code = []
     @possible_solutions = @code_colors.repeated_permutation(4).to_a
     @feedback = []
-    @round = 0
+    @round = 1
     make_code
     start
   end
@@ -54,11 +54,11 @@ class CodeMaker
       break if @feedback.count("b") == 4
       @round += 1
     end
-    p @possible_solutions.join
+    puts "Guessed in #{@round} rounds."
   end
 
   def make_guess
-    if @round == 0
+    if @round == 1
       @guess = %w[r r g g]
     else
       @guess = @possible_solutions.sample
@@ -82,14 +82,37 @@ class CodeMaker
 
   def match_color
     if @feedback.count("w") == 3
-      @guess << "."
-      matches = @guess.repeated_permutation(@feedback.count("w") + 1).to_a
+      match_three
+    elsif @feedback.count("w") == 2
+      match_two
     else
       matches = @guess.repeated_permutation(@feedback.count("w")).to_a
+      @possible_solutions = @possible_solutions.keep_if do |solution|
+        matches.any? do |match|
+          next if match.count(".") > 1
+          solution.join.match(/#{match.join}/)
+        end
+      end
     end
+  end
+
+  def match_three
+    @guess << "."
+    matches = @guess.repeated_permutation(@feedback.count("w") + 1).to_a
     @possible_solutions = @possible_solutions.keep_if do |solution|
       matches.any? do |match|
         next if match.count(".") > 1
+        solution.join.match(/#{match.join}/)
+      end
+    end
+  end
+
+  def match_two
+    2.times { @guess << "." }
+    matches = @guess.repeated_permutation(@feedback.count("w") + 2).to_a
+    @possible_solutions = @possible_solutions.keep_if do |solution|
+      matches.any? do |match|
+        next if match.count(".") > 2
         solution.join.match(/#{match.join}/)
       end
     end

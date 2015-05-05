@@ -1,6 +1,7 @@
 # Solution using one method.
 # Recursion to split, loop to merge.
 def merge_sort(list)
+
   return list if list.size <= 1
 
   half_list = merge_sort(list.slice!(0..(list.size / 2 - 1)))
@@ -26,12 +27,13 @@ end
 # One to split and one to merge.
 def merge_sort_rec(list)
   return list if list.size <= 1
-
   half = list.size / 2
+
   merge_rec(merge_sort_rec(list[0..(half - 1)]), merge_sort_rec(list[half..-1]))
 end
 
 def merge_rec(half_list, other_half_list)
+
   return other_half_list if half_list.empty?
   return half_list if other_half_list.empty?
 
