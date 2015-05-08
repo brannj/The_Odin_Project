@@ -64,6 +64,7 @@ def dfs_rec(target, tree_node)
   return right_search unless right_search.nil?
 end
 
+
 tree = build_tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324])
 #tree.to_a.each { |node| puts "Node: #{node} value: #{node.value} - #{node.left_node.value unless node.left_node.value.nil?} | #{node.right_node.value unless node.right_node.value.nil?}"  }
 puts breadth_first_search(3, tree)
