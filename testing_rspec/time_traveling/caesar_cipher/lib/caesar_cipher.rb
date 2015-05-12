@@ -1,5 +1,7 @@
 def caesar_cipher(text, shift_factor)
   cipher = ""
+  # Handle negative factors and factors greater than 26.
+  shift_factor %= 26
   text.each_char do |letter|
     cipher << case
     when (65..90).include?(letter.ord)
@@ -18,7 +20,7 @@ def caesar_cipher(text, shift_factor)
       letter
     end
   end
-  puts cipher
+  cipher
 end
 
-caesar_cipher("What a string!", 5)
+# puts caesar_cipher("Refactor", 26)
