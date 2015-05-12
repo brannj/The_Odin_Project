@@ -3,7 +3,7 @@ module Enumerable
   # 3.
   def my_each
     0.upto(self.size - 1) do |i|
-      yield(self[i])
+      yield(self.to_a[i])
     end
     self
   end
@@ -63,12 +63,14 @@ module Enumerable
   end
 
   # 9.
-  def my_count
+  def my_count(arg = nil)
     count = 0
 
     self.my_each do |i|
       if block_given?
         count += 1 if yield(i)
+      elsif arg != nil
+        count +=1 if i == arg
       else
         count += 1
       end
