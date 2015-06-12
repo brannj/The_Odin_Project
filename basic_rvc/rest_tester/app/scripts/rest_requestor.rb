@@ -1,5 +1,4 @@
 require 'rest-client'
 
-print "Enter a url: "
-url = gets.chomp
-puts RestClient.get(url)
+url = "http://localhost:3000/users"
+puts RestClient.post(url, "")
