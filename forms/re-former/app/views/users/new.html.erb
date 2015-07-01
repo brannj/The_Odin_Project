@@ -31,6 +31,11 @@
   <body>
     <h1>New User</h1>
     <%= form_for(@user) do |f| %>
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      <ul>
       <%= f.label "#{:name}:" %><br>
       <%= f.text_field :name %><br><br>
       <%= f.label "#{:email}:" %><br>
