@@ -63,7 +63,7 @@ p {
 
 #logo {
   float: left;
-  margin-right: 10px;
+  margin-left: 10px;
   font-size: 1.7em;
   color: white;
   text-transform: uppercase;
@@ -74,6 +74,18 @@ p {
     color: white;
     text-decoration: none;
   }
+}
+
+button {
+  color: #777;
+  &:hover {
+    color: $gray-medium-light;
+  }
+  background-color: $gray-darker;
+  border: none;
+  margin-left: 10px;
+  padding-top: 5px;
+  margin-top: 10px;
 }
 
 /* footer */
@@ -181,9 +193,9 @@ input {
   margin-left: 0;
 }
 
-/* Users index */
+/* Posts index */
 
-.users {
+.posts {
   list-style: none;
   margin: 0;
   li {
