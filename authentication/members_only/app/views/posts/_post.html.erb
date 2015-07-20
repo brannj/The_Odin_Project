@@ -1,0 +1,6 @@
+<li>
+  <%= link_to post.title, post %>
+  <% if logged_in? %>
+    | posted by <%= link_to post.user.name, post.user %>
+  <% end %>
+</li>

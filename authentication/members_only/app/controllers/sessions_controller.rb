@@ -16,6 +16,6 @@ class SessionsController < ApplicationController
 
   def destroy
     log_out if logged_in?
-    redirect_to login_path    # Change to root url once set up.
+    redirect_to(root_url)    # Change to root url once set up.
   end
 end

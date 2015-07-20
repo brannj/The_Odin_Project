@@ -1,7 +1,7 @@
 module ApplicationHelper
   # Returns the fill title on a per-page basis.
   def full_title(page_title = '')
-    base_title = "Ruby on Rails Tutorial Sample App"
+    base_title = "Members Only"
     if page_title.empty?
       base_title
     else
