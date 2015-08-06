@@ -1,0 +1,4 @@
+nikola:
+  name: Nikola Tesla
+  email: genius@example.com
+  password_digest: <%= User.digest('password') %>
